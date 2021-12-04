@@ -13,8 +13,9 @@ document.querySelector('.score').textContent = 10;
 document.querySelector('.guess').value = 23;
 console.log(document.querySelector('.guess').value);
 */
-const secretNumber = Math.trunc(Math.random() * 20) + 1;
+let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
+let highScore = 0;
 // document.querySelector('.number').textContent = secretNumber;
 
 let startGuess = function() {
@@ -34,6 +35,10 @@ let startGuess = function() {
         document.body.style.color = "white";
         document.querySelector('.number').style.backgroundColor = "#ffdb0e";
         document.querySelector('.number').style.width = "25rem";
+        if (score > highScore) {
+            highScore = score;
+            document.querySelector('.highscore').textContent = highScore;
+        }
 
     }
 
@@ -60,3 +65,18 @@ let startGuess = function() {
     }
 }
 document.querySelector('.check').addEventListener('click', startGuess);
+
+
+document.querySelector('.again').addEventListener('click', function() {
+    score = 20;
+    secretNumber = Math.trunc(Math.random() * 20) + 1;
+    document.querySelector('.message').textContent = 'Start guessing...';
+    document.querySelector('.score').textContent = score;
+    document.querySelector('.number').textContent = '?';
+    document.querySelector('.guess').value = '';
+    document.body.style.backgroundColor = "#0033a1";
+    document.body.style.color = "#ffb45e";
+    document.querySelector('.number').style.backgroundColor = "#eee";
+    document.querySelector('.number').style.width = "15rem";
+
+});
